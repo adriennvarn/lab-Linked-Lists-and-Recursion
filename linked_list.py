@@ -1,4 +1,3 @@
-
 class Node:
     """
     A Node class to store integer data and a reference to the next node.
@@ -10,7 +9,8 @@ class Node:
         - Assign the provided 'data' to an instance variable.
         - Initialize 'next' to None.
         """
-        pass
+        self.data = data
+        self.next = None
 
 
 class LinkedList:
@@ -23,7 +23,7 @@ class LinkedList:
         TODO:
         - Initialize 'head' to None to represent an empty list.
         """
-        pass
+        self.head = None
 
     def insert_at_front(self, data):
         """
@@ -32,7 +32,9 @@ class LinkedList:
         - Insert it at the front of the list (head).
         - Update 'head' to the new node.
         """
-        pass
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
 
     def insert_at_end(self, data):
         """
@@ -41,7 +43,16 @@ class LinkedList:
         - Traverse to the end of the list.
         - Set the last node's 'next' reference to the new node.
         """
-        pass
+        new_node = Node(data)
+        current = self.head
+        if not current:
+            self.head = new_node
+            return
+        
+        while current.next:
+            current = current.next
+        current.next = new_node
+            
 
     def recursive_sum(self):
         """
@@ -52,7 +63,12 @@ class LinkedList:
           2. Otherwise, returns node.data + recursive call on node.next.
         - Return the total sum.
         """
-        pass
+        def return_data(node):
+            if not node:
+                return 0
+            return node.data + return_data(node.next)
+        
+        return return_data(self.head)
 
     def recursive_reverse(self):
         """
